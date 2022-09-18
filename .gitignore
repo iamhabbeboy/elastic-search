@@ -1,0 +1,8 @@
+.env
+elasticsearch-data/
+logstash/
+mysql-conf/
+mysql/
+mysql_data/
+pipeline/
+.DS_Store
