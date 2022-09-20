@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/iamhabbeboy/elastic-app/cmd/web/handlers"
@@ -13,10 +14,13 @@ import (
 
 func main() {
 	viper.SetConfigName("config")
-	viper.AddConfigPath(".")
-	viper.AutomaticEnv()
-
 	viper.SetConfigType("yml")
+	viper.AddConfigPath("/Users/solomon/Work/elastic-search/backend/")
+	viper.AutomaticEnv()
+	err := viper.ReadInConfig() // Find and read the config file
+	if err != nil {             // Handle errors reading the config file
+		panic(fmt.Errorf("fatal error config file: %w", err))
+	}
 	model.Init()
 
 	r := chi.NewRouter()
