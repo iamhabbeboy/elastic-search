@@ -8,16 +8,16 @@ services:
     container_name: backend
     ports:
       - "8080:3000"
-  postgres:
-    image: postgres:14
-    container_name: postgres
-    restart: always
-    environment:
-      POSTGRES_PASSWORD: test
-      POSTGRES_DB: app
-      POSTGRES_USER: postgres
-    ports:
-      - "6543:5432"
+  # postgres:
+  #   image: postgres:14
+  #   container_name: postgres
+  #   restart: always
+  #   environment:
+  #     POSTGRES_PASSWORD: test
+  #     POSTGRES_DB: app
+  #     POSTGRES_USER: postgres
+  #   ports:
+  #     - "6543:5432"
   mysql:
       image: mysql:5.7
       container_name: mysql
@@ -80,14 +80,14 @@ services:
       - ALLOW_PLAINTEXT_LISTENER=yes
     depends_on:
       - zookeeper
-  logstash:
-    image: logstash:7.17.6
-    container_name: logstash
-    restart: always
-    command: logstash -f /logstash_dir/logstash.conf
-    depends_on:
-      - elasticsearch
-    volumes:
-      - ./logstash/:/logstash_dir
-    ports:
-      - "9600:9600"
+  # logstash:
+  #   image: logstash:7.17.6
+  #   container_name: logstash
+  #   restart: always
+  #   command: logstash -f /logstash_dir/logstash.conf
+  #   depends_on:
+  #     - elasticsearch
+  #   volumes:
+  #     - ./logstash/:/logstash_dir
+  #   ports:
+  #     - "9600:9600"

@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"log"
-	"os"
 
 	"entgo.io/ent/dialect"
 	"github.com/iamhabbeboy/elastic-app/ent"
@@ -16,39 +15,14 @@ type DBPostgres struct {
 	client *ent.Client
 }
 
-// func DBConnection() (*ent.Client, error) {
-// 	client, err := ent.Open("mysql", "elastic:secret@tcp(mysql:3306)/elastic")
-// 	if err != nil {
-// 		log.Fatal(err)
-// 	}
-
-// 	return client, nil
-// }
-
 func (d *DBPostgres) GetDSN() string {
-	DBPort, ok := viper.Get("DB.PORT").(string)
-	if !ok {
-		log.Fatalf("Invalid type assertion")
-	}
-
-	fmt.Printf("viper : %s = %s \n", "Database Port", DBPort)
-	// user := "elastic"
-	pass := "secret"
-	host := "mysql"
-	db := "elastic"
-	port := "3306"
 	return fmt.Sprintf("%v:%v@tcp(%v:%v)/%v",
-		os.Getenv("DB_USER"),
-		pass,
-		host,
-		port,
-		db,
-	) //os.Getenv("DB_USER"),
-	//os.Getenv("DB_PASS"),
-	//os.Getenv("DB_HOST"),
-	//os.Getenv("DB_PORT"),
-	//os.Getenv("DB_NAME"),
-
+		viper.Get("DB.USER"),
+		viper.Get("DB.PASS"),
+		viper.Get("DB.HOST"),
+		viper.Get("DB.PORT"),
+		viper.Get("DB.NAME"),
+	)
 }
 func (d *DBPostgres) Open() (*ent.Client, error) {
 	return ent.Open(dialect.MySQL, d.GetDSN())

@@ -1,0 +1,10 @@
+# config.yaml
+SERVICE:
+  ELASTICSEARCH_URL: http://elasticsearch:9200
+
+DB:
+  HOST: mysql
+  PORT: "3306"
+  NAME: elastic
+  USER: elastic
+  PASS: secret
