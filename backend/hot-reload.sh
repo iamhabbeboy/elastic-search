@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 
-CompileDaemon \
+/usr/local/go/bin/CompileDaemon \
 -log-prefix=false \
 -exclude-dir=".git" \
 -exclude-dir=".github" \

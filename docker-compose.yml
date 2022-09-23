@@ -1,5 +1,13 @@
 version: '2.2'
 services:
+  web:
+    build: 
+      context: ./web
+      dockerfile: web.dockerfile
+    restart: always
+    container_name: web
+    ports:
+      - "80:8080"
   backend:
     build: 
       context: ./backend
@@ -7,7 +15,7 @@ services:
     restart: always
     container_name: backend
     ports:
-      - "8080:3000"
+      - "8000:3000"
   # postgres:
   #   image: postgres:14
   #   container_name: postgres
